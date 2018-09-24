@@ -48,19 +48,29 @@
         
         body {
             margin: 0;
-            font-family: 'Georgia', Serif;
+            color: #373a3c;
+            font-family: TimesNewRoman, Times New Roman, Times, Baskerville, Georgia, sans-serif;
+            background: #eee url('/img/marvels-spider-man-newspaper-texture-ps4-us-28feb18.png') top center;
         }
         
         h1 {
+            margin: 8px 0;
+            font-family: Impact, Futura-CondensedExtraBold, "Arial Black", "Roboto script=all rev=1", sans-serif;
+            text-transform: uppercase;
+            font-size: 4rem;
+        }
+        
+        h1 a {
             width: 90%;
-            font-family: "PostoniStandardBold", Georgia, serif;
-            font-size: 30px;
+            font-family: Impact, Futura-CondensedExtraBold, "Arial Black", "Roboto script=all rev=1", sans-serif;
+            font-size: 24px;
             font-weight: normal;
-            margin: 0px auto;
-            margin-bottom: 20px;
-            line-height: 1.1em;
+            margin-bottom: 8px;
+            line-height: 0;
             word-spacing: -.02em;
-            color: #000000;
+            color: #373a3c;
+            text-decoration: none;
+            text-transform: uppercase;
         }
         
         p {
@@ -69,7 +79,7 @@
             font-family: Georgia, serif;
             font-size: 16px;
             margin-bottom: 20px;
-            color: #000000;
+            color: #373a3c;
             line-height: 1.5em;
         }
         
@@ -94,8 +104,9 @@
         
         .content-container {
             width: 100%;
-            max-width: 600px;
+            max-width: 960px;
             margin: 0 auto;
+            position: relative;
         }
         
         .masthead {
@@ -103,13 +114,23 @@
             display: block;
             padding-top: 8px;
             text-align: center;
-            background-color: #000000;
+            max-width: 960px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         @media (min-width: 768px) {
             .masthead {
                 margin-bottom: 5%;
             }
+        }
+        .db__hero__date{
+            padding: 0.3rem 0;
+            text-align: center;
+            text-transform: uppercase;
+            border-top: solid 2px black;
+            border-bottom: solid 2px rgba(0, 0, 0, .20);
+            font-weight: bold;
         }
         
         .pb-caption {
@@ -130,8 +151,14 @@
         .kicker {
             font-family: "FranklinITCProBold", "Myriad Set Pro", "Lucida Grande", "Helvetica Neue", "Helvetica", "Arial", "Verdana", "sans-serif";
             font-size: 14px;
-            margin: 12px auto;
-            color: #2C6CB4;
+            color: #fff;
+            margin: 0;
+            background: #be120e;
+            left: 0;
+            top: 0;
+            width: auto;
+            padding: 0 10px;
+            display: inline-block;
         }
         
         .byline {
@@ -140,6 +167,7 @@
             line-height: 1.1em;
             color: #5a5a5a;
             margin-bottom: 4px;
+            margin: 0;
         }
         
         .date {
@@ -147,7 +175,8 @@
             font-size: 12px;
             line-height: 1.1em;
             margin-bottom: 20px;
-            color: #5a5a5a
+            color: #5a5a5a;
+            margin: 0;
         }
         
         .subhead {
@@ -155,7 +184,7 @@
             font-family: Georgia, serif;
             font-size: 16px;
             margin-bottom: 20px;
-            color: #000000;
+            color: #373a3c;
             line-height: 1.5em;
             font-weight: 700;
         }
@@ -220,21 +249,29 @@
         
         .footer-background {
             width: 100%;
-            background-color: #000000;
+            background-color: #373a3c;
             padding: 20px 0px;
         }
         
         .footer-container {
             font-family: "FranklinITCProLight";
-            max-width: 600px;
+            max-width: 960px;
             margin: 0 auto;
         }
         
         .site-attribution {
-            width: 90%;
+            width: 100%;
             margin: 0 auto;
             list-style-type: none;
             padding-left: 0;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+        }
+        .site-attribution li{
+            width: 33.33333%;
         }
         
         .footer-link:link,
@@ -315,21 +352,11 @@
         }
         
         .disclaimer {
-            background-color: #000000;
+            background-color: #373a3c;
             padding: 10px 20px;
             color: #fbb35a;
             font-size: 0.8em;
-            text-align: center;
-        }
-        
-        .meter-section {
-            font-family: franklinBold;
-            font-size: 1.3em;
-            background-color: #000000;
-            color: #fbb35a;
-            padding: 7px;
-            margin: 10px;
-            text-align: center;
+            display: none;
         }
         
         .button {
@@ -353,43 +380,14 @@
         .content-container .button {
             width: 90%;
             margin: 10px auto;
-            padding: 6px 0;
         }
         
-        .navigation {
-            overflow: hidden;
-            margin: 0;
-            width: auto;
-            padding-bottom: 8px;
-        }
-        
-        .navigation .prev {
-            float: left;
-            background-image: url(/img/chevron-left.png);
-            background-position: left center;
-            background-repeat: no-repeat;
-            padding-left: 24px;
-        }
-        
-        .navigation .next {
-            float: right;
-            background-image: url(/img/chevron-right.png);
-            background-position: right center;
-            background-repeat: no-repeat;
-            padding-right: 24px;
-        }
-        
-        .navigation a {
-            display: inline-block;
-            text-align: center;
-            color: #fff;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 400;
-            line-height: 32px;
-            margin: 0;
-            padding-bottom: 12px;
-            line-height: 0;
+        .headline {
+            -webkit-filter: drop-shadow(0 1.8px 1.8px rgba(0, 0, 0, 0.16)) drop-shadow(0 1.8px 1.8px rgba(0, 0, 0, 0.23));
+            filter: drop-shadow(0 1.8px 1.8px rgba(0, 0, 0, 0.16)) drop-shadow(0 1.8px 1.8px rgba(0, 0, 0, 0.23));
+            background: #fff;
+            padding: 1rem 8px;
+            margin: 8px auto;
         }
     </style>
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
@@ -465,9 +463,10 @@
 <body>
     <div class="disclaimer">Article sample for demo purposes only. Courtesy of Washington Post.</div>
     <header class="masthead">
-        <a href="/">
-            <amp-img src="https://img.washingtonpost.com/pb/resources/img/thewashingtonpost-white-2x.png" width="180" height="27" />
+        <a href=".">
+            <amp-img src="https://media.playstation.com/is/image/SCEA/marvels-spider-man-daily-bugle-header-desktop-01-us-22may18?$native_nt$" width="960" height="135" />
         </a>
+        <div class="db__hero__date"></div>
         <div class="navigation">
             <div class="prev">
                 <a href="5">Previous</a>

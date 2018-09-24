@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Washing Post Demo</title>
+    <title>Daily Bugle</title>
     <link rel="canonical" href="https://www.washingtonpost.com/news/monkey-cage/wp/2016/01/27/how-do-you-measure-corruption-transparency-international-does-its-best-and-thats-useful/">
     <style amp-custom>
         @font-face {
@@ -48,8 +48,9 @@
         
         body {
             margin: 0;
-            font-family: 'Georgia', Serif;
-            background: #eee;
+            color: #373a3c;
+            font-family: TimesNewRoman, Times New Roman, Times, Baskerville, Georgia, sans-serif;
+            background: #eee url('/img/marvels-spider-man-newspaper-texture-ps4-us-28feb18.png') top center;
         }
         
         h1 {
@@ -58,14 +59,15 @@
         
         h1 a {
             width: 90%;
-            font-family: "PostoniStandardBold", Georgia, serif;
+            font-family: Impact, Futura-CondensedExtraBold, "Arial Black", "Roboto script=all rev=1", sans-serif;
             font-size: 24px;
             font-weight: normal;
             margin-bottom: 8px;
             line-height: 0;
             word-spacing: -.02em;
-            color: #000000;
+            color: #373a3c;
             text-decoration: none;
+            text-transform: uppercase;
         }
         
         p {
@@ -74,7 +76,7 @@
             font-family: Georgia, serif;
             font-size: 16px;
             margin-bottom: 20px;
-            color: #000000;
+            color: #373a3c;
             line-height: 1.5em;
         }
         
@@ -99,7 +101,7 @@
         
         .content-container {
             width: 100%;
-            max-width: 600px;
+            max-width: 960px;
             margin: 0 auto;
         }
         
@@ -108,13 +110,23 @@
             display: block;
             padding-top: 8px;
             text-align: center;
-            background-color: #000000;
+            max-width: 960px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         @media (min-width: 768px) {
             .masthead {
                 margin-bottom: 5%;
             }
+        }
+        .db__hero__date{
+            padding: 0.3rem 0;
+            text-align: center;
+            text-transform: uppercase;
+            border-top: solid 2px black;
+            border-bottom: solid 2px rgba(0, 0, 0, .20);
+            font-weight: bold;
         }
         
         .pb-caption {
@@ -135,9 +147,14 @@
         .kicker {
             font-family: "FranklinITCProBold", "Myriad Set Pro", "Lucida Grande", "Helvetica Neue", "Helvetica", "Arial", "Verdana", "sans-serif";
             font-size: 14px;
-            margin: 12px auto;
-            color: #2C6CB4;
+            color: #fff;
             margin: 0;
+            background: #be120e;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: auto;
+            padding: 0 10px;
         }
         
         .byline {
@@ -234,15 +251,23 @@
         
         .footer-container {
             font-family: "FranklinITCProLight";
-            max-width: 600px;
+            max-width: 960px;
             margin: 0 auto;
         }
         
         .site-attribution {
-            width: 90%;
+            width: 100%;
             margin: 0 auto;
             list-style-type: none;
             padding-left: 0;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+        }
+        .site-attribution li{
+            width: 33.33333%;
         }
         
         .footer-link:link,
@@ -327,6 +352,7 @@
             padding: 10px 20px;
             color: #fbb35a;
             font-size: 0.8em;
+            display: none;
         }
         
         .button {
@@ -356,8 +382,8 @@
             -webkit-filter: drop-shadow(0 1.8px 1.8px rgba(0, 0, 0, 0.16)) drop-shadow(0 1.8px 1.8px rgba(0, 0, 0, 0.23));
             filter: drop-shadow(0 1.8px 1.8px rgba(0, 0, 0, 0.16)) drop-shadow(0 1.8px 1.8px rgba(0, 0, 0, 0.23));
             background: #fff;
-            padding: 8px;
-            margin: 8px 16px;
+            padding: 1rem 8px;
+            margin: 8px auto;
         }
     </style>
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
@@ -398,9 +424,10 @@
     <div class="disclaimer">Article sample for demo purposes only. Courtesy of Washington Post.</div>
 
     <header class="masthead">
-        <a href="https://www.washingtonpost.com">
-            <amp-img src="https://img.washingtonpost.com/pb/resources/img/thewashingtonpost-white-2x.png" width="180" height="27" />
+        <a href="https://www.playstation.com/en-us/games/marvels-spider-man-ps4/daily-bugle-issue-1/">
+            <amp-img src="https://media.playstation.com/is/image/SCEA/marvels-spider-man-daily-bugle-header-desktop-01-us-22may18?$native_nt$" width="960" height="135" />
         </a>
+        <div class="db__hero__date"></div>
     </header>
 
 
