@@ -71,11 +71,9 @@
         }
         
         p {
-            width: 90%;
-            margin: 0px auto;
+            margin: 20px auto ;
             font-family: Georgia, serif;
             font-size: 16px;
-            margin-bottom: 20px;
             color: #373a3c;
             line-height: 1.5em;
         }
@@ -103,6 +101,11 @@
             width: 100%;
             max-width: 960px;
             margin: 0 auto;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
         }
         
         .masthead {
@@ -379,11 +382,16 @@
         }
         
         .headline {
-            -webkit-filter: drop-shadow(0 1.8px 1.8px rgba(0, 0, 0, 0.16)) drop-shadow(0 1.8px 1.8px rgba(0, 0, 0, 0.23));
-            filter: drop-shadow(0 1.8px 1.8px rgba(0, 0, 0, 0.16)) drop-shadow(0 1.8px 1.8px rgba(0, 0, 0, 0.23));
-            background: #fff;
-            padding: 1rem 8px;
-            margin: 8px auto;
+            padding: 1rem 0;
+            margin: 8px 2.5%;
+            width: 45%;
+        }
+        .headline.first-child{
+            width: 100%;
+        }
+        .headline.first-child h1 a{
+            font-size: 4rem;
+            line-height: 1;
         }
     </style>
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
@@ -448,13 +456,15 @@
         This is a test page for <a href="https://support.google.com/news/publisher/answer/40543?hl=en-GB">First-Click-Free</a>. All links opened from this page will be treated as a First-Click-Free referral (the limit is 3).
       </section>
       <%/fcf%>
-        <div class="headline">
+        <div class="headline first-child">
             <p class="kicker">Monkey Cage</p>
-
+            <img src="/img/sea@1x.jpg" style="max-width: 960px; height: auto; margin-bottom: 1rem;" alt="">
             <h1><a href="0">Here’s this year’s (flawed) Corruption Perception Index. Those flaws are useful.</a></h1>
             <p class="byline">By Dan Hough</p>
             <p class="date">January 27, 2016 at 11:00 AM</p>
+            <p>On Wednesday, Transparency International (TI), the world’s leading anti-corruption organization, is publishing its annual Corruption Perceptions Index (CPI). The CPI is a great tool for ensuring that corruption and anti-corruption measures remain on the public policy agenda, but we should nonetheless be very wary of taking its findings too seriously.</p>
         </div>
+
         <div class="headline">
             <p class="kicker">Early Lead</p>
 
@@ -463,6 +473,7 @@
             <p class="byline">By Cindy Boren</p>
 
             <p class="date">January 27, 2016 at 3:11 PM</p>
+            
         </div>
 
         <div class="headline">
