@@ -1,0 +1,291 @@
+<!doctype html>
+<html ⚡>
+  <head>
+    <meta charset="utf-8">
+    <title>AMP Times</title>
+    <link rel="canonical" href="<% id %>" >
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <!--
+      Configures the AMP Access endpoints. These must be provided by the publisher.
+
+      When configuring the URLs for various endpoints, these substitution 
+      variables are available: 
+
+      * READER_ID: The AMP Reader ID.
+      * AMPDOC_URL: The URL of this AMP Document.
+      * CANONICAL_URL: The canonical URL of this AMP Document.
+      * DOCUMENT_REFERRER: The Referrer URL.
+      * VIEWER: The origin of the AMP Viewer.
+      * RANDOM: A random number. Helpful to avoid browser cache.
+    -->
+    <script id="amp-access" type="application/json">
+    <%#serverMode%>
+    {
+      "type": "server",
+      "jwt": true,
+      "publicKeyUrl": "<% host %>/public.pem",
+      "authorization": "<% host %>/amp-access/api/amp-authorization.json?type=server&rid=READER_ID&url=CANONICAL_URL&ref=DOCUMENT_REFERRER&_=RANDOM",
+      "pingback": "<% host %>/amp-access/api/amp-pingback?rid=READER_ID&ref=DOCUMENT_REFERRER&url=CANONICAL_URL",
+      "login": "<% host %>/amp-access/login/?rid=READER_ID&url=CANONICAL_URL",
+      "authorizationFallbackResponse": {
+        "error": true,
+        "access": false
+      }     
+    }
+    <%/serverMode%>
+    <%^serverMode%>
+    {
+      "type": "client",
+      "authorization": "<% host %>/amp-access/api/amp-authorization.json?type=client&rid=READER_ID&url=CANONICAL_URL&ref=DOCUMENT_REFERRER&_=RANDOM",
+      "pingback": "<% host %>/amp-access/api/amp-pingback?rid=READER_ID&ref=DOCUMENT_REFERRER&url=CANONICAL_URL",
+      "login": "<% host %>/amp-access/login/?rid=READER_ID&url=CANONICAL_URL",
+      "authorizationFallbackResponse": {
+        "error": true,
+        "access": false
+      }     
+    } 
+    <%/serverMode%>    
+    </script>
+    <%> styles %>
+    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+    <script async custom-element="amp-access" src="https://cdn.ampproject.org/v0/amp-access-0.1.js"></script>
+    <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.1.js"></script>
+    <style>body {opacity: 0}</style><noscript><style>body {opacity: 1}</style></noscript>
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+
+  </head>
+  <body>
+    <amp-analytics type="googleanalytics" id="analytics">
+      <script type="application/json">
+        {
+          "vars": {
+            "account": "UA-72665224-1"
+          },
+          "requests": {
+            "host": "<% host %>"     
+          },
+          "triggers": {
+            "default pageview": {
+              "on": "visible",
+              "request": "pageview",
+              "vars": {
+                "title": "AMP Access Demo Pageview"
+              }
+            },
+            "accessAuthorizationReceived": {
+              "on": "access-authorization-received",
+              "request": "event",
+              "vars": {
+                "eventCategory": "amp-access",
+                "eventAction": "auth-received",                
+                "eventLabel" : "access",
+                "eventValue" : "AUTHDATA(access)"                
+              }
+            },
+            "accessAuthorizationFailed": {
+              "on": "access-authorization-failed",
+              "request": "event",
+              "vars": {
+                "eventCategory": "amp-access",
+                "eventAction": "auth-failed"                                
+              }
+            },            
+            "accessViewed": {
+              "on": "access-viewed",
+              "request": "event",
+              "vars": {
+                "eventCategory": "amp-access",
+                "eventAction": "article-viewed"                                
+              }
+            },
+            "accessPingbackSent": {
+              "on": "access-pingback-sent",
+              "request": "event",
+              "vars": {
+                "eventCategory": "amp-access",
+                "eventAction": "pingback-sent"                                
+              }              
+            },
+            "accessPingbackFailed": {
+              "on": "access-pingback-failed",
+              "request": "event",
+              "vars": {
+                "eventCategory": "amp-access",
+                "eventAction": "pingback-failed"                                
+              }              
+            },
+            "accessLoginStarted": {
+              "on": "access-login-started",
+              "request": "event",
+              "vars": {
+                "eventCategory": "amp-access",
+                "eventAction": "login-started"                                
+              }              
+            },                        
+            "accessLoginSuccess": {
+              "on": "access-login-success",
+              "request": "event",
+              "vars": {
+                "eventCategory": "amp-access",
+                "eventAction": "login-success"                                
+              }              
+            },
+            "accessLoginRejected": {
+              "on": "access-login-rejected",
+              "request": "event",
+              "vars": {
+                "eventCategory": "amp-access",
+                "eventAction": "login-rejected"                                
+              }              
+            },
+            "accessLoginFailed": {
+              "on": "access-login-failed",
+              "request": "event",
+              "vars": {
+                "eventCategory": "amp-access",
+                "eventAction": "login-failed"                                
+              }              
+            }                        
+          }
+        }
+      </script>
+    </amp-analytics>
+    <div class="main-body">                 
+    <header>
+      <div class="brand-logo" data-z-depth="2"><a href="/">⚡ AMP Times</a>
+        <span amp-access="subscriber" amp-access-hide>
+          <a href="<% host %>/amp-access/login/logout" class="logout">Logout</a>
+        </span>            
+        <span amp-access="NOT subscriber" amp-access-hide role="button" tabindex="0">
+          <a on="tap:amp-access.login" class="logout">Login</a>  
+        </span>                  
+      </div>  
+      <div class="navigation" data-z-depth="2">
+        <%#prev%>
+        <div class="prev">
+          <a href="<% prev %>">Previous</a>
+        </div>
+        <%/prev%>        
+        <%#next%>        
+        <div class="next">
+          <a href="<% next %>">Next</a>
+        </div>
+        <%/next%>                
+      </div>
+    </header>
+    <main role="main">
+    <article>
+
+      <section id="meter-notif" amp-access="access OR error" class="meter-section" data-z-depth="2" amp-access-hide>
+        <!-- 
+          This section is only visible by subscribers. The subscriber variable is 
+          defined in the authentification response data.
+        -->
+        <div amp-access="access AND subscriber" amp-access-hide>
+          Thanks for being a subscriber. You rock!
+        </div>
+
+        <div amp-access="access AND views" amp-access-hide>
+          <template amp-access-template type="amp-mustache">
+            You are viewing article {{views}} of {{maxViews}} free articles this month!
+          </template>
+        </div>          
+
+        <div amp-access="access AND return" amp-access-hide>
+          Welcome back! You've read this article already.
+        </div>
+
+        <div amp-access="access AND fcs" amp-access-hide>
+          Yay! The first click is free.
+        </div>    
+
+        <div amp-access="error" amp-access-hide>
+          Ooops, something went wrong on the authorization endpoint!
+        </div>
+
+        <a on="tap:meter-notif.hide" role="button" tabindex="1">Dismiss</a>
+      </section>                      
+
+      <!--
+        This section is visible to all users.
+      -->  
+      <section>
+        <h3><% title %></h3>    
+        <amp-img
+            src="/img/hero@1x.jpg"
+            srcset="/img/hero@1x.jpg 1x, /img/hero@2x.jpg 2x"
+            role="button"
+            tabindex="0"
+            layout="responsive" width="360" placeholder
+            alt="Curabitur convallis, urna quis pulvinar feugiat, purus diam posuere turpis, sit amet tincidunt purus justo et mi."
+            height="216" on="tap:headline-img-lightbox"
+            role="button" tabindex="2">
+        </amp-img>
+        <p>
+          This text is part of the article preview and visible to all users. 
+          This text is part of the article preview and visible to all users. 
+          This text is part of the article preview and visible to all users. 
+          This text is part of the article preview and visible to all users. 
+          This text is part of the article preview and visible to all users. 
+          This text is part of the article preview and visible to all users. 
+        </p>
+      </section>
+
+      <!--
+        This section will only be shown to users who do not have access to the article and
+        have reached the maximum number of articles for that month.
+      -->
+      <section amp-access="NOT access AND maxViews" amp-access-hide>
+        <div class="meter-section" data-z-depth="2">
+          <template amp-access-template type="amp-mustache">
+            You have reached your {{maxViews}} free articles this month!
+          </template>
+        </div>
+
+        <div on="tap:amp-access.login" class="button raised center" data-z-depth="2" role="button" tabindex="3">
+          <div class="center"><a class="center" >Login to read more!</a>
+          </div>
+        </div>
+      </section>
+
+      <!--
+        This section will be shown to users who have access to the article. 
+        Either because it follows First Click Free rules, the user is a subscriber 
+        or has not yet reached the maximum number of free articles.
+      -->
+      <div amp-access="access" >
+        <figure>
+          <amp-img class="full-bleed" placeholder
+                   src="img/sea@1x.jpg"
+                   srcset="/img/sea@1x.jpg 1x, /img/sea@2x.jpg 2x"
+                   layout="responsive" width="360"
+                                       alt="Fusce pretium tempor justo, vitae consequat dolor maximus eget."
+                                       height="216">
+          </amp-img>
+        </figure>
+        <p>
+          This text is part of the article that is only visible to users with access to the entire page contents.
+          This text is part of the article that is only visible to users with access to the entire page contents.
+          This text is part of the article that is only visible to users with access to the entire page contents.
+          This text is part of the article that is only visible to users with access to the entire page contents.
+          This text is part of the article that is only visible to users with access to the entire page contents.
+          This text is part of the article that is only visible to users with access to the entire page contents.
+          This text is part of the article that is only visible to users with access to the entire page contents.
+          This text is part of the article that is only visible to users with access to the entire page contents.
+        </p>
+      </div>
+    </article>
+    </main>
+    <footer>
+      <section amp-access="TRUE" class="reset-section">
+        <template amp-access-template type="amp-mustache">
+          <div role="button" tabindex="2">
+            <a href="/reset?rid={{readerId}}">Reset Access State</a>
+          </div>
+        </template>    
+      </section>    
+    </footer> 
+    </div>
+  </body>
+</html>
