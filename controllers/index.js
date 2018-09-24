@@ -23,10 +23,11 @@ router.use('/amp-user-notification', require('./amp-user-notification'));
 router.use('/amp-analytics', require('./amp-analytics'));
 router.use('/*/collect', require('./amp-analytics/proxy'));
 router.use('/collect', require('./amp-analytics/proxy'));
+router.use('/', require('./amp-access/demo'));
 
-router.get('/', function(req, res) {
-  res.render('index.html', {
-  });
-});
+// router.get('/', function(req, res) {
+//   res.render('index.html', {
+//   });
+// });
 
 module.exports = router;
