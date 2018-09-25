@@ -58,40 +58,49 @@ router.get('/',  function(req, res) {
     res.redirect("/");
   });
 // Perform the final stage of authentication and redirect to '/user'
-router.get('/callback',
-  passport.authenticate('auth0', { failureRedirect: 'error', 
-  failureFlash: true  }),
-  function (req, res) {
-    if (!req.user) {
-      throw new Error('user null');
-    }
-    //res.redirect("/user");
-    console.log("Checking the coookie", req.cookies.readerId)
+router.get('/callback',function(req, res, next) {
+  passport.authenticate('auth0', function(err, user, info) {
+    if (err) { return next(err); }
+    if (!user) { return res.redirect('/login'); }
+    req.logIn(user, function(err) {
+      if (err) { return next(err); }
+      return res.redirect('/users/' + user.username);
+    });
+  })(req, res, next);
+});
+//   passport.authenticate('auth0', { failureRedirect: 'error', 
+//   failureFlash: true  }),
+//   function (req, res) {
+//     if (!req.user) {
+//       throw new Error('user null');
+//     }
+//     //res.redirect("/user");
+//     console.log("Checking the coookie", req.cookies.readerId)
 
-    var user = req.user 
+//     var user = req.user 
 
-    var readerId = req.body.rid;
-    var returnUrl = req.cookies.returnUrl;
+//     var readerId = req.body.rid;
+//     var returnUrl = req.cookies.returnUrl;
 
   
 
-    // var user = User.findByEmail(user.email);
+//     // var user = User.findByEmail(user.email);
 
-    // map the user to the AMP Reader ID
-    var paywallAccess = PaywallAccess.getOrCreate(req.cookies.readerId);
+//     // map the user to the AMP Reader ID
+//     var paywallAccess = PaywallAccess.getOrCreate(req.cookies.readerId);
 
-    paywallAccess.user = user;
+//     paywallAccess.user = user;
 
-    // set user as logged in via cookie
-    res.cookie('email', user.email, {
-      maxAge: AUTH_COOKIE_MAX_AGE  // 2hr
-    });
+//     // set user as logged in via cookie
+//     res.cookie('email', user.email, {
+//       maxAge: AUTH_COOKIE_MAX_AGE  // 2hr
+//     });
 
-    console.log("--------- Auth0 Callback Finished -----------")
-    res.redirect(returnUrl + '#success=true');
+//     console.log("--------- Auth0 Callback Finished -----------")
+//     res.redirect(returnUrl + '#success=true');
 
-  }
-);
+//   }
+// );
 
 
 router.get('/error', function(req,res){
