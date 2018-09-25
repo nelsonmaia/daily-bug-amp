@@ -14,9 +14,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-## AMP Access Sample
+## Auth0 and AMP Access Sample
 
-This is a AMP demo application based on [AMP Access](https://github.com/ampproject/amphtml/blob/master/extensions/amp-access/amp-access.md) component. AMP Access or “AMP paywall and subscription support” provides control to publishers over what content can be accessed by a reader and with what restrictions. This application is integrated with [Auth0](https://auth0.com)
+This is a AMP demo application based on [AMP Access](https://github.com/ampproject/amphtml/blob/master/extensions/amp-access/amp-access.md) component and using Auth0 for authentication. AMP Access or “AMP paywall and subscription support” provides control to publishers over what content can be accessed by a reader and with what restrictions. This application is integrated with [Auth0](https://auth0.com)
+
+In this sample, all the users that are allowed to login in this demo are considered an subscriber.
 
 You can try the demo [here](https://dailybugle.herokuapp.com).
 
