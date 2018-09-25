@@ -34,38 +34,66 @@ var AUTH_COOKIE_MAX_AGE = 1000 * 60 * 60 * 2; //2 hours
  * Login Page is simply a normal Web page with no special constraints, other
  * than it should function well as a browser dialog.
  */
-router.get('/',  function(req, res) {
-      console.log("Here we have the READER ID", req.query.rid)
+router.get('/', function (req, res) {
+  console.log("Here we have the READER ID", req.query.rid)
 
 
-      res.cookie('readerId', req.query.rid, {
-        maxAge: AUTH_COOKIE_MAX_AGE  // 2hr
-      });
+  res.cookie('readerId', req.query.rid, {
+    maxAge: AUTH_COOKIE_MAX_AGE  // 2hr
+  });
 
-      res.cookie('returnUrl', req.query.return, {
-        maxAge: AUTH_COOKIE_MAX_AGE  // 2hr
-      });
+  res.cookie('returnUrl', req.query.return, {
+    maxAge: AUTH_COOKIE_MAX_AGE  // 2hr
+  });
 
-      res.redirect("login");
+  res.redirect("login");
 }
-  );
+);
 
-  router.get('/login',
-  passport.authenticate('auth0', 
-      { scope: 'openid email profile' })
-      , function (req, res) {
-        console.log("the callback is here?");
+router.get('/login',
+  passport.authenticate('auth0',
+    { scope: 'openid email profile' })
+  , function (req, res) {
+    console.log("the callback is here?");
     res.redirect("/");
   });
 // Perform the final stage of authentication and redirect to '/user'
-router.get('/callback',function(req, res, next) {
-  passport.authenticate('auth0', function(err, user, info) {
-    if (err) { return next(err); }
-    if (!user) { return res.redirect('/login'); }
-    req.logIn(user, function(err) {
-      if (err) { return next(err); }
-      return res.redirect('/users/' + user.username);
+router.get('/callback', function (req, res, next) {
+  passport.authenticate('auth0', function (err, user, info) {
+    if (err) {
+
+      console.log(err)
+
+      return next(err);
+    }
+    if (!req.user) {
+      throw new Error('user null');
+    }
+    //res.redirect("/user");
+    console.log("Checking the coookie", req.cookies.readerId)
+
+    var user = req.user
+
+    var readerId = req.body.rid;
+    var returnUrl = req.cookies.returnUrl;
+
+
+
+    // var user = User.findByEmail(user.email);
+
+    // map the user to the AMP Reader ID
+    var paywallAccess = PaywallAccess.getOrCreate(req.cookies.readerId);
+
+    paywallAccess.user = user;
+
+    // set user as logged in via cookie
+    res.cookie('email', user.email, {
+      maxAge: AUTH_COOKIE_MAX_AGE  // 2hr
     });
+
+    console.log("--------- Auth0 Callback Finished -----------")
+    res.redirect(returnUrl + '#success=true');
+
   })(req, res, next);
 });
 //   passport.authenticate('auth0', { failureRedirect: 'error', 
@@ -82,7 +110,7 @@ router.get('/callback',function(req, res, next) {
 //     var readerId = req.body.rid;
 //     var returnUrl = req.cookies.returnUrl;
 
-  
+
 
 //     // var user = User.findByEmail(user.email);
 
@@ -103,8 +131,8 @@ router.get('/callback',function(req, res, next) {
 // );
 
 
-router.get('/error', function(req,res){
-  
+router.get('/error', function (req, res) {
+
   console.log("error is ");
   console.log(req.session.message);
 
