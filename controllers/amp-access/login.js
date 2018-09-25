@@ -59,12 +59,7 @@ router.get('/login',
   });
 // Perform the final stage of authentication and redirect to '/user'
 router.get('/callback',
-  passport.authenticate('auth0', function (err, user, info) {
-
-      console.log("its is here");
-      console.log(err);
-
-  }),
+  passport.authenticate('auth0', { failureRedirect: 'error'}),
   function (req, res) {
     if (!req.user) {
       throw new Error('user null');
