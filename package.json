@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "A sample implementation for an AMP Publisher",
   "main": "app.js",
+  "engines": {
+    "node": "^8.11.3"
+  },
   "author": "Nelson Matias",
   "scripts": {
     "start": "node app.js",
