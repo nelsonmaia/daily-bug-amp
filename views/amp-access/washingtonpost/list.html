@@ -388,8 +388,25 @@
             position: relative;
         }
         .headline.first-child{
-            width: 100%;
-            
+            width: 100%;   
+        }
+        .headline.second-child{
+            display: flex;
+            flex-wrap: wrap;
+            -webkit-box-align: start;
+            -ms-flex-align: start;
+            -ms-grid-row-align: flex-start;
+            align-items: flex-start;
+        }
+        .headline.second-child .i-amphtml-layout-responsive{
+            width: 40%;
+            margin-right: 5%;
+        }
+        .headline.second-child > div{
+            width: 50%;
+        }
+        .headline.second-child > div h1{
+            margin-top: 0;
         }
         .headline.first-child h1 a{
             
@@ -493,39 +510,41 @@
             <p class="date">January 27, 2016 at 11:00 AM</p>
         </div>
 
-        <div class="headline">
+        <div class="headline second-child">
             <amp-img alt="A view of the sea"
                 src="https://s7test1.scene7.com/is/image/SCEA/marvels-spider-man-daily-bugle-osborn-seeks-three-peat-desktop-01-us-22may18?$native_lg$"
                 width="219"
                 height="312"
                 layout="responsive">
             </amp-img>
-                
-            <p class="kicker">Early Lead</p>
-
-            <h1><a href="1">OSBORN SEEKS THREE-PEAT</a></h1>
-            <p>Mayor Norman Osborn has announced a third run for Mayor. After City Council passed a bill — ushered through by Mayor Osborn — removing term limits on the Mayor’s Office, Osborn’s been cleared for a shot at an unprecedented third straight term.</p>
-            <p class="byline">By Cindy Boren</p>
-
-            <p class="date">January 27, 2016 at 3:11 PM</p>
+            <div>
+                <p class="kicker">Early Lead</p>
+                <h1><a href="1">OSBORN SEEKS THREE-PEAT</a></h1>
+                <p>Mayor Norman Osborn has announced a third run for Mayor. After City Council passed a bill — ushered through by Mayor Osborn — removing term limits on the Mayor’s Office, Osborn’s been cleared for a shot at an unprecedented third straight term.</p>
+                <p class="byline">By Cindy Boren</p>
+    
+                <p class="date">January 27, 2016 at 3:11 PM</p>
+            </div>
             
         </div>
 
-        <div class="headline">
-                <amp-img alt="A view of the sea"
+        <div class="headline second-child">
+            <amp-img alt="A view of the sea"
                 src="https://s7test1.scene7.com/is/image/SCEA/marvels-spider-man-daily-bugle-so-long-jjj-desktop-01-v2-us-22may18?$native_lg$"
                 width="219"
                 height="312"
                 layout="responsive">
             </amp-img>
-            <p class="kicker">Colleges</p>
-
-            <h1><a href="2">SO LONG, JJJ</a></h1>
-            <p>The Daily Bugle says goodbye to its longstanding publisher J. Jonah Jameson. After decades of leadership, the fiery, headstrong newsman turns his attention to podcasts.</p>
-
-            <p class="byline">By Robbie Robertson</p>
-
-            <p class="date">January 27, 2016 at 3:17 AM</p>
+            <div>
+                <p class="kicker">Colleges</p>
+    
+                <h1><a href="2">SO LONG, JJJ</a></h1>
+                <p>The Daily Bugle says goodbye to its longstanding publisher J. Jonah Jameson. After decades of leadership, the fiery, headstrong newsman turns his attention to podcasts.</p>
+    
+                <p class="byline">By Robbie Robertson</p>
+    
+                <p class="date">January 27, 2016 at 3:17 AM</p>
+            </div>
         </div>
         <div class="headline">
             <p class="kicker">Business</p>
