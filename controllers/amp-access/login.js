@@ -64,11 +64,11 @@ router.get('/callback',
   passport.authenticate('auth0', { failureRedirect: 'error'}),
   function (req, res) {
 
-console.log("the req user is", req)
+  console.log("the req user is", req)
 
-    if (!req.user) {
-      throw new Error('user null');
-    }
+    // if (!req.user) {
+    //   throw new Error('user null');
+    // }
     //res.redirect("/user");
     console.log("Checking the coookie", req.cookies.readerId)
 
