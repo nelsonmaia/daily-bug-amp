@@ -66,13 +66,13 @@ router.get('/callback', function (req, res, next) {
 
       return next(err);
     }
-    if (!req.user) {
+    if (!user) {
       throw new Error('user null');
     }
     //res.redirect("/user");
     console.log("Checking the coookie", req.cookies.readerId)
 
-    var user = req.user
+    var user = user
 
     var readerId = req.body.rid;
     var returnUrl = req.cookies.returnUrl;
