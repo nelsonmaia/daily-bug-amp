@@ -69,7 +69,7 @@ router.get('/callback',
     if (!req.user) {
       throw new Error('user null');
     }
-    res.redirect("/user");
+   
     console.log("Checking the coookie", req.cookies.readerId)
 
     var user = req.user 
