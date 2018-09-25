@@ -50,6 +50,10 @@ var strategy = new Auth0Strategy({
   callbackURL: process.env.AUTH0_CALLBACK_URL
  },
  function(accessToken, refreshToken, extraParams, profile, done) {
+
+  console.log("here one");
+
+
    // accessToken is the token to call Auth0 API (not needed in the most cases)
    // extraParams.id_token has the JSON Web Token
    // profile has all the information from the user
@@ -110,5 +114,5 @@ var server = app.listen(port, function() {
   var host = server.address().address;
   var port = server.address().port;
 
-  console.log('Publisher listening on: ', port);
+  console.log('Publisher listening on v2: ', port);
 });
