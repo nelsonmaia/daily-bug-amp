@@ -80,7 +80,7 @@ The login integration uses Node.js as backend APIs. To integrate Auth0 with Node
 Clone the repository via:
 
 ```none
-$ git clone https://github.com/ampproject/amp-publisher-sample.git
+$ git clone https://github.com/nelsonmaia/daily-bug-amp.git
 ```
 
 Install [NodeJS](https://nodejs.org/) and run in the project dir:
