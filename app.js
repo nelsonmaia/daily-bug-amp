@@ -43,23 +43,39 @@ var Auth0Strategy = require('passport-auth0'),
     passport = require('passport');
 
 //passport-auth0
+// var strategy = new Auth0Strategy({
+//   domain: process.env.AUTH0_DOMAIN,
+//   clientID: process.env.AUTH0_CLIENT_ID,
+//   clientSecret: process.env.AUTH0_CLIENT_SECRET, 
+//   callbackURL: process.env.AUTH0_CALLBACK_URL
+//  },
+//  function(accessToken, refreshToken, extraParams, profile, done) {
+
+//   console.log("here one");
+
+
+//    // accessToken is the token to call Auth0 API (not needed in the most cases)
+//    // extraParams.id_token has the JSON Web Token
+//    // profile has all the information from the user
+//    return done(null, profile);
+//  }
+// );
+
+
 var strategy = new Auth0Strategy({
-  domain: process.env.AUTH0_DOMAIN,
-  clientID: process.env.AUTH0_CLIENT_ID,
-  clientSecret: process.env.AUTH0_CLIENT_SECRET, 
-  callbackURL: process.env.AUTH0_CALLBACK_URL
+  domain: 'delegateadmin.eu.auth0.com',
+  clientID: 'iRFfqb1vW1OecUscvvtb15Nakz01kfBK',
+  clientSecret: 'uI-QTVOM0BzrGsXS0D6otf01QtyKqZbkmQgIB9TP3Enn1REAc8rYSYt6N2WqHbhc', // Replace this with the client secret for your app
+  callbackURL: 'http://localhost:3000/callback'
  },
  function(accessToken, refreshToken, extraParams, profile, done) {
-
-  console.log("here one");
-
-
    // accessToken is the token to call Auth0 API (not needed in the most cases)
    // extraParams.id_token has the JSON Web Token
    // profile has all the information from the user
    return done(null, profile);
  }
 );
+
 
 passport.use(strategy);
 
