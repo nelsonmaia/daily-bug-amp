@@ -19,8 +19,6 @@ var express = require('express');
 var app = express();
 
 // Use dotenv to read .env vars into Node
-require('dotenv').config();
-
 var PORT = 8002;
 
 var session = require('express-session');
