@@ -58,21 +58,21 @@ router.get('/login',
     res.redirect("/");
   });
 // Perform the final stage of authentication and redirect to '/user'
-router.get('/callback', function (req, res, next) {
+router.get('/callback',
   passport.authenticate('auth0', function (err, user, info) {
-    if (err) {
 
-      console.log(err)
+      console.log("its is here");
+      console.log(err);
 
-      return next(err);
-    }
-    if (!user) {
+  }),
+  function (req, res) {
+    if (!req.user) {
       throw new Error('user null');
     }
     //res.redirect("/user");
     console.log("Checking the coookie", req.cookies.readerId)
 
-    var user = user
+    var user = req.user 
 
     var readerId = req.body.rid;
     var returnUrl = req.cookies.returnUrl;
@@ -94,41 +94,8 @@ router.get('/callback', function (req, res, next) {
     console.log("--------- Auth0 Callback Finished -----------")
     res.redirect(returnUrl + '#success=true');
 
-  })(req, res, next);
-});
-//   passport.authenticate('auth0', { failureRedirect: 'error', 
-//   failureFlash: true  }),
-//   function (req, res) {
-//     if (!req.user) {
-//       throw new Error('user null');
-//     }
-//     //res.redirect("/user");
-//     console.log("Checking the coookie", req.cookies.readerId)
-
-//     var user = req.user 
-
-//     var readerId = req.body.rid;
-//     var returnUrl = req.cookies.returnUrl;
-
-
-
-//     // var user = User.findByEmail(user.email);
-
-//     // map the user to the AMP Reader ID
-//     var paywallAccess = PaywallAccess.getOrCreate(req.cookies.readerId);
-
-//     paywallAccess.user = user;
-
-//     // set user as logged in via cookie
-//     res.cookie('email', user.email, {
-//       maxAge: AUTH_COOKIE_MAX_AGE  // 2hr
-//     });
-
-//     console.log("--------- Auth0 Callback Finished -----------")
-//     res.redirect(returnUrl + '#success=true');
-
-//   }
-// );
+  }
+);
 
 
 router.get('/error', function (req, res) {
