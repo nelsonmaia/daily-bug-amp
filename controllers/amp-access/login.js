@@ -92,36 +92,6 @@ router.get('/callback',
   }
 );
 
-/**
- * A simple login flow. The important thing is to map the user
- * to it's AMP Reader ID.
- */
-router.post('/submit', function (req, res) {
-  var email = req.body.email;
-  var password = req.body.password;
-  var returnUrl = req.body.returnurl;
-  var readerId = req.body.rid;
-  console.log('POST: ', email, returnUrl, readerId);
-
-  var user = User.findByEmail(email);
-  if (!user || user.password != password) {
-    console.log('Login failed: ', user);
-    res.redirect('/?rid=' + readerId + "&return=" + returnUrl);
-    return;
-  }
-  console.log('Login success: ', user);
-
-  // map the user to the AMP Reader ID
-  var paywallAccess = PaywallAccess.getOrCreate(readerId);
-  paywallAccess.user = user;
-
-  // set user as logged in via cookie
-  res.cookie('email', user.email, {
-    maxAge: AUTH_COOKIE_MAX_AGE  // 2hr
-  });
-
-  res.redirect(returnUrl + '#success=true');
-});
 
 router.get('/reset', function (req, res) {
   var readerId = req.query.rid;

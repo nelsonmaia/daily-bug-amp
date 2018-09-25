@@ -16,9 +16,9 @@ limitations under the License.
 
 ## AMP Access Sample
 
-This is a demo application for the [AMP Access](https://github.com/ampproject/amphtml/blob/master/extensions/amp-access/amp-access.md) component. AMP Access or “AMP paywall and subscription support” provides control to publishers over what content can be accessed by a reader and with what restrictions. You can try the demo [here](https://rocky-sierra-1919.herokuapp.com).
+This is a AMP demo application based on [AMP Access](https://github.com/ampproject/amphtml/blob/master/extensions/amp-access/amp-access.md) component. AMP Access or “AMP paywall and subscription support” provides control to publishers over what content can be accessed by a reader and with what restrictions. This application is integrated with [Auth0](https://auth0.com)
 
-![](public/img/amp-access-screenshot.png)
+You can try the demo [here](https://dailybugle.herokuapp.com).
 
 ## Getting Started
 
@@ -31,9 +31,9 @@ This is a quick walk through the source code to get you started with AMP Access.
 
 The first step is to implement the AMP Access callbacks in the publisher backend. The endpoint  URLs must be configured in each AMP HTML file using AMP Access:
 
-* **authorization** ([api.js](controllers/amp-access/api.js#L31)): this credentialed CORS endpoint produces the authorization response that can be used in the content markup expressions to show/hide different parts of content (e.g. *subscriber*). The response is a free-form JSON object: it can contain any properties and values. 
+* **authorization** ([api.js](controllers/amp-access/api.js#L31)): this credentialed CORS endpoint produces the authorization response that can be used in the content markup expressions to show/hide different parts of content (e.g. *for this case we will allow access to all users*). The response is a free-form JSON object: it can contain any properties and values. 
 * **pingback** ([api.js](controllers/amp-access/api.js#L89)): the main purposes for pingback is to count down meter when it is used. As a credentialed CORS endpoint it may contain publisher cookies. Thus it can be used to map AMP Reader ID to the reader's identity if they are logged in.
-* **login** ([login.html](views/amp-access/login.html)): is a normal Web page with no special constraints, other than it should function well as a browser dialog. 
+* **login**  ([login.js](controllers/amp-access/login.js#L89)): Integration with Auth0 using Passaport.js. After authenticated in Auth0, a cookie is created with the information needed for AMP Access.
  
 Both endpoints, authorization and pingback, must be credentialed CORS endpoints. This is configured in [amp-paywall-cors.js](middlewares/amp-access-cors.js).
 
@@ -69,6 +69,10 @@ The second step is to integrate AMP Access into the AMP HTML files:
     
 That's it.
 
+#### Auth0 Configuration
+
+The login integration uses Node.js as backend APIs. To integrate Auth0 with Node.js you can follow the documentation [here](https://auth0.com/docs/quickstart/webapp/nodejs/01-login)
+
 ## Installation
 
 Clone the repository via:
@@ -84,12 +88,12 @@ $ npm i
 $ npm start
 ```
 
+Configure the file .env to point to your Auth0 instance. ([envtemplate](.envtemplate))
+
 Try the demo at [http://localhost:8002/](http://localhost:8002/). 
-
-## Contributing
-
-Please see [the CONTRIBUTING file](CONTRIBUTING.md) for information on contributing to the AMP Project, and [the DEVELOPING file](DEVELOPING.md) for documentation on the AMP library internals and [hints how to get started](DEVELOPING.md#starter-issues).
 
 ## License
 
-The AMP HTML Access Demo is made by the [AMP Project](https://www.ampproject.org/), and is licensed under the [Apache License, Version 2.0](LICENSE).
+The AMP HTML Access Demo is made by Nelson Matias based on the [AMP Project](https://www.ampproject.org/), the sample is based on  [AMP Access](https://github.com/ampproject/amphtml/blob/master/extensions/amp-access/amp-access.md). 
+
+This is a sample code and shouldn't be used for Production Environments

@@ -18,6 +18,9 @@
 var express = require('express');
 var app = express();
 
+// Use dotenv to read .env vars into Node
+require('dotenv').config();
+
 var PORT = 8002;
 
 var session = require('express-session');
@@ -41,10 +44,10 @@ var Auth0Strategy = require('passport-auth0'),
 
 //passport-auth0
 var strategy = new Auth0Strategy({
-  domain: 'delegateadmin.eu.auth0.com',
-  clientID: 'iRFfqb1vW1OecUscvvtb15Nakz01kfBK',
-  clientSecret: 'uI-QTVOM0BzrGsXS0D6otf01QtyKqZbkmQgIB9TP3Enn1REAc8rYSYt6N2WqHbhc', // Replace this with the client secret for your app
-  callbackURL: 'http://localhost:8002/amp-access/login/callback',
+  domain: process.env.AUTH0_DOMAIN,
+  clientID: process.env.AUTH0_CLIENT_ID,
+  clientSecret: process.env.AUTH0_CLIENT_SECRET, 
+  callbackURL: process.env.AUTH0_CALLBACK_URL,
   state: true
  },
  function(accessToken, refreshToken, extraParams, profile, done) {
