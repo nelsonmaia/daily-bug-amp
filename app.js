@@ -66,7 +66,8 @@ var strategy = new Auth0Strategy({
   domain: 'delegateadmin.eu.auth0.com',
   clientID: 'iRFfqb1vW1OecUscvvtb15Nakz01kfBK',
   clientSecret: 'uI-QTVOM0BzrGsXS0D6otf01QtyKqZbkmQgIB9TP3Enn1REAc8rYSYt6N2WqHbhc', // Replace this with the client secret for your app
-  callbackURL: 'https://dailybugle.herokuapp.com/amp-access/login/callback'
+  callbackURL: 'https://dailybugle.herokuapp.com/amp-access/login/callback',
+  state: false
  },
  function(accessToken, refreshToken, extraParams, profile, done) {
    // accessToken is the token to call Auth0 API (not needed in the most cases)
