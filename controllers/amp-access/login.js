@@ -86,6 +86,9 @@ router.get('/callback',
 
     paywallAccess.user = user;
 
+    console.log("user");
+    console.log(user);
+
     // set user as logged in via cookie
     res.cookie('email', user.email, {
       maxAge: AUTH_COOKIE_MAX_AGE  // 2hr
