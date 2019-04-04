@@ -52,7 +52,8 @@ router.get('/', function (req, res) {
 
 router.get('/login',
   passport.authenticate('auth0',
-    { scope: 'openid email profile' })
+      
+    { scope: 'openid email profile', connection: 'stark-cordco-conn'})
   , function (req, res) {
     console.log("the callback is here?");
     res.redirect("/");
@@ -90,7 +91,7 @@ router.get('/callback',
     console.log(user);
 
     // set user as logged in via cookie
-    res.cookie('email', user.email, {
+    res.cookie('email', user, {
       maxAge: AUTH_COOKIE_MAX_AGE  // 2hr
     });
 
