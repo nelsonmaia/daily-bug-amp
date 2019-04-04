@@ -53,7 +53,7 @@ router.get('/', function (req, res) {
 router.get('/login',
   passport.authenticate('auth0',
       
-    { scope: 'openid email profile'})
+    { scope: 'openid email profile', connection: 'stark-cordco-conn'})
   , function (req, res) {
     console.log("the callback is here?");
     res.redirect("/");
